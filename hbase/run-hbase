@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p /data/hbase
+mkdir -p /data/zookeeper
+
+/opt/hbase-${HBASE_VERSION}/bin/hbase master --masters=1 --localRegionServers=1 start
