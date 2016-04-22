@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: tcollector
+  name: tcollector
+spec:
+  template:
+    metadata:
+      labels:
+        app: tcollector
+    spec:
+      # Filter to specific nodes:
+      nodeSelector:
+        node4: "true"
+      containers:
+        - image: docker.io/d1g1tal/tcollector:v2.2.0r0
+          imagePullPolicy: Always
+          name:  tcollector
+    securityContext:
+      privileged: true
+    serviceAccount: tcollector
+    serviceAccountName: tcollector
