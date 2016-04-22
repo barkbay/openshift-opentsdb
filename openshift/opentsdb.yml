@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    openshift.io/scc: restricted
+  labels:
+    component: opentsdb
+spec:
+  containers:
+  - image: docker.io/d1g1tal/hbase:v1.1.4r0
+    imagePullPolicy: Always
+    name: hbase
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+        - SYS_CHROOT
+      privileged: false
+    terminationMessagePath: /dev/termination-log
+  - image: docker.io/d1g1tal/opentsdb:v2.2.0r0
+    imagePullPolicy: Always
+    name: opentsdb
+    ports:
+    - containerPort: 4242
+      name: tsd
+      protocol: TCP
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+        - SYS_CHROOT
+      privileged: false
+    terminationMessagePath: /dev/termination-log
+    volumeMounts:
+    - mountPath: /secret
+      name: kibana-proxy
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: aggregated-logging-kibana-token-pyqlx
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  nodeSelector:
+    region: primary
+  restartPolicy: Always
