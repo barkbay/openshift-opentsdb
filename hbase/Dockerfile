@@ -26,3 +26,5 @@ EXPOSE 16000 16010 16020 16030
 ADD run-hbase /
 
 USER 30
+
+CMD ["/run-hbase"]
