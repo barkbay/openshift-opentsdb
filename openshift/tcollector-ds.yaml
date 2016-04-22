@@ -17,7 +17,7 @@ spec:
         - image: docker.io/d1g1tal/tcollector:v2.2.0r0
           imagePullPolicy: Always
           name:  tcollector
-    securityContext:
-      privileged: true
-    serviceAccount: tcollector
-    serviceAccountName: tcollector
+          securityContext:
+            privileged: true
+      serviceAccount: tcollector
+      serviceAccountName: tcollector
