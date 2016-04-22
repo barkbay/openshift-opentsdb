@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: null
+  labels:
+    component: opentsdb
+  name: opentsdb
+spec:
+  host: opentsdb.node2.cnamts.octo.com
+  port:
+    targetPort: "4242"
+  to:
+    kind: Service
+    name: opentsdb
+

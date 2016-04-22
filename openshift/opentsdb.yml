@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  name: openshift
   annotations:
     openshift.io/scc: restricted
   labels:
@@ -39,13 +40,6 @@ spec:
         - SYS_CHROOT
       privileged: false
     terminationMessagePath: /dev/termination-log
-    volumeMounts:
-    - mountPath: /secret
-      name: kibana-proxy
-      readOnly: true
-    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: aggregated-logging-kibana-token-pyqlx
-      readOnly: true
   dnsPolicy: ClusterFirst
   nodeSelector:
     region: primary
