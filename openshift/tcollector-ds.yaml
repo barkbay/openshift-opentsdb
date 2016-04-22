@@ -10,6 +10,7 @@ spec:
       labels:
         app: tcollector
     spec:
+      hostNetwork: true
       # Filter to specific nodes:
       nodeSelector:
         node4: "true"
