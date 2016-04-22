@@ -1,1 +1,8 @@
+#!/bin/bash
+
+echo "Attempt to create HBase tables"
+export COMPRESSION=SNAPPY
+
+/usr/share/opentsdb/tools/create_table.sh
+
 /usr/bin/tsdb tsd

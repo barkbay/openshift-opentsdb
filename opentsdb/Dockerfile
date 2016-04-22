@@ -1,11 +1,14 @@
-FROM centos:7
+FROM d1g1tal/hbase:v1.1.4r0
 
 MAINTAINER Michael Morello <michael.morello@gmail.com>
- 
-RUN yum -y install java-1.8.0-openjdk-headless.x86_64
+
+USER 0 
+
+RUN yum -y install java-1.8.0-openjdk-headless.x86_64 snappy
 
 ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk
 ENV OPENTSDB_VERSION 2.2.0
+ENV HBASE_HOME /opt/hbase-${HBASE_VERSION}
 
 ADD https://github.com/OpenTSDB/opentsdb/releases/download/v${OPENTSDB_VERSION}/opentsdb-${OPENTSDB_VERSION}.noarch.rpm .
 
