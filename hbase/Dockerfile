@@ -2,7 +2,7 @@ FROM centos:7
 
 MAINTAINER Michael Morello <michael.morello@gmail.com>
  
-RUN yum -y install java-1.8.0-openjdk-headless.x86_64
+RUN yum -y install java-1.8.0-openjdk-headless.x86_64 snappy
 
 ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk
 ENV HBASE_VERSION 1.1.4
@@ -24,6 +24,8 @@ VOLUME ["/data"]
 EXPOSE 16000 16010 16020 16030
 
 ADD run-hbase /
+
+COPY lib/native/libh* /usr/lib64/
 
 USER 30
 
